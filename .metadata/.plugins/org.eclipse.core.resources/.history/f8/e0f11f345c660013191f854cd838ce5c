@@ -1,0 +1,109 @@
+
+import java.sql.*;
+import java.util.*;
+public class MySQL{
+ 
+public MySQL(String user){
+Connection conn = null;
+String url = "jdbc:mysql://localhost:3306/";
+String dbName = "koncerty";
+String driver = "com.mysql.jdbc.Driver";
+String userName = "root";
+String password = "";
+Scanner sx = new Scanner(System.in);
+try {
+Class.forName(driver).newInstance();
+conn = DriverManager.getConnection(url+dbName,userName,password);
+
+
+while(true){
+
+
+Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+	
+ResultSet rs = stmt.executeQuery("SELECT * FROM koncert");
+System.out.println("id miejsce typ  nazwa  data  godzina cena");
+while (rs.next()) {
+int id = rs.getInt("id");
+String miejsce = rs.getString("miejsce");
+String typ = rs.getString("typ");
+String nazwa = rs.getString("nazwa");
+String data = rs.getString("data");
+String godzina = rs.getString("godzina");
+String cena = rs.getString("cena");
+
+
+System.out.println(id + " " +  miejsce + " " + typ + " " + nazwa + " " + data + " "+ godzina + " "+ cena + "" );
+}
+System.out.println();
+
+
+  System.out.println("Podaj id, miejsce, typ, nazwe, date (rrrr-mm-dd), godzina(gg:mm), cene koncertu : ");
+  int id = sx.nextInt();
+  sx.nextLine();
+  String miejsce = sx.nextLine();
+  String typ = sx.nextLine();
+  String nazwa = sx.nextLine();
+  String data = sx.nextLine();
+  String godzina = sx.nextLine();
+  String cena = sx.nextLine();
+  
+
+  stmt.executeUpdate("INSERT INTO koncert (id, miejsce, typ, nazwa, data , godzina, cena) VALUES ('" +id + "' , '" + miejsce + "', '" + typ + "', '" + nazwa +"', '" + data + "', '"+ godzina + "', '" + cena+"')");
+  System.out.println();
+  
+ 
+System.out.println("Podaj id koncertu do usuniecia:");
+int id_d = sx.nextInt();
+sx.nextLine();
+   stmt.executeUpdate("DELETE FROM koncert WHERE id =" + id_d);
+   System.out.println();
+
+	Scanner sx2 = new Scanner(System.in);
+	System.out.println("Podaj nazwe zespolu, ktorego koncertu szukasz : ");
+	String nazwaszukana = sx2.nextLine();
+	ResultSet rs2=stmt.executeQuery("Select * from koncert where nazwa = '" +nazwaszukana+"'" );
+	while (rs2.next()) {
+		 id = rs2.getInt("id");
+		 miejsce = rs2.getString("miejsce");
+		 typ = rs2.getString("typ");
+		 nazwa = rs2.getString("nazwa");
+		 data = rs2.getString("data");
+		 godzina = rs2.getString("godzina");
+		 cena = rs2.getString("cena");
+		 System.out.println(id + " " +  miejsce + " " + typ + " " + nazwa + " " + data + " "+ godzina + " "+ cena + "" );
+		}
+	System.out.println();
+	
+
+	Scanner sx3 = new Scanner(System.in);
+	System.out.println("Podaj daty (rrrr-mm-dd) pomiedzy ktorymi szukasz koncertu : ");
+	String dataszukanamin = sx3.nextLine();
+	String dataszukanamax = sx3.nextLine();
+	ResultSet rs3=stmt.executeQuery("Select * from koncert where data between '" +dataszukanamin+"' and '"+ dataszukanamax+"'" );
+	while (rs3.next()) {
+		 id = rs3.getInt("id");
+		 miejsce = rs3.getString("miejsce");
+		 typ = rs3.getString("typ");
+		 nazwa = rs3.getString("nazwa");
+		 data = rs3.getString("data");
+		 godzina = rs3.getString("godzina");
+		 cena = rs3.getString("cena");
+		 System.out.println(id + " " +  miejsce + " " + typ + " " + nazwa + " " + data + " "+ godzina + " "+ cena + "" );
+		}
+	System.out.println();
+conn.close();
+System.out.println("Roz³aczony z baza");
+break;
+ 
+}
+
+} catch (Exception e) {
+e.printStackTrace();
+}
+ }
+
+
+
+}

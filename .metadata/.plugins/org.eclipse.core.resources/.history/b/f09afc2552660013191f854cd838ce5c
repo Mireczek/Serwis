@@ -1,0 +1,67 @@
+
+import java.net.*;
+import java.io.*;
+
+public class Klient {
+	private Socket socket = null;
+	private DataInputStream streamIn = null;
+	private DataOutputStream streamOut = null;
+	private String serverName = "localhost";
+	private int port = 5000;
+	private boolean polaczenie = false;
+	@SuppressWarnings("deprecation")
+	public Klient(String name, String password){
+		try{
+			socket = new Socket(serverName, port);
+			start();
+		}catch(UnknownHostException uhe)
+	      {  System.out.println("Host unknown: " + uhe.getMessage());
+	      }
+	      catch(IOException ioe)
+	      {  System.out.println("Unexpected exception: " + ioe.getMessage());
+	      }
+		
+        try {
+			streamOut.writeUTF(name); 
+			streamOut.flush();
+			streamOut.writeUTF(password); 
+			streamOut.flush();
+			polaczenie = streamIn.readBoolean();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+     
+        
+		if(polaczenie== true){
+			Logowanie.zalogowany = true;
+        String line = "";
+	      while (!line.equals(".bye"))
+	      {  try
+	         {  line = streamIn.readLine();
+	            streamOut.writeUTF(line);
+	            streamOut.flush();
+	         }
+	         catch(IOException ioe)
+	         {  System.out.println("Sending error: " + ioe.getMessage());
+	         }
+	      }
+		}else{
+			Logowanie.zalogowany = false;
+		}
+		
+	}
+	public void start() throws IOException{
+		streamIn = new DataInputStream(System.in);
+		streamOut = new DataOutputStream(socket.getOutputStream());
+	}
+	public void stop(){
+		try{
+			if(streamIn != null) streamIn.close();
+			if(streamOut != null) streamOut.close();
+			if(socket != null) socket.close();
+		}catch(IOException e){
+			
+		}
+	}
+
+}
