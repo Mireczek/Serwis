@@ -18,30 +18,73 @@ public class MySQL{
 			Class.forName(driver).newInstance();
 			conn = DriverManager.getConnection(url+dbName,userName,password);
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			ResultSet rs;
+			//pobranie ID Klienta który aktualnie siê zalogowa³ OK
+		try {
+				System.out.println(name);
+				rs = stmt.executeQuery("Select * from client where client_name = '"+name+"'");
+				
+				while(rs.next())
+					ID = rs.getInt("client_id");
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
-			ResultSet rs = stmt.executeQuery("Select ID from ");
-			ID = rs.getInt(ID);
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
+
 		
 		
 }
+public String getPassword(){//Pobranie has³a dla klienta OK
+	ResultSet rs;
+	String password = null;
+	try {
+		rs = stmt.executeQuery("Select * from client_password where client_id = '"+ID+"'");
+		while(rs.next())
+			password = rs.getString("password");
 		
-public String Command(String command) throws SQLException{
-	
-	String Wynik  = null;
-	Scanner sx = new Scanner(System.in);
-	
-			ResultSet rs = stmt.executeQuery(command + " where ID = " + ID);
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
 
-			int i=1;
-			while (rs.next()) {
-				rs.getArray(i);
-				i++;
-				int id = rs.getInt("id");
-			}
-			System.out.println();
+	return password;
+}
+public List<String> Command(String command) throws SQLException{
+	//W tej klasie s¹ wykonywane wszystkie zapytania do bazy MySQL
+	
+	List<String> Wynik = new Vector<String>();
+	
+			ResultSet rs = stmt.executeQuery(command);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnNumber = rsmd.getColumnCount();
+			
+			Wynik.add(Integer.toString(columnNumber));
+			//wyswietlanie nazw kolumn:
+            for (int i = 1; i <= columnNumber; i++) { 
+            	Wynik.add(rsmd.getColumnLabel(i)) ;
+            	 ;
+             System.out.print(rsmd.getColumnLabel(i) +"  |  "); 
+             
+            }
+            System.out.print("\n------------------------------------\n");
+
+            //wyswietlanie kolejnych rekordow:
+            while (rs.next()) {
+                for (int i = 1; i <= columnNumber; i++) {
+               	   	 Object obj = rs.getObject(i);
+                     if (obj != null){
+                    	 System.out.print(obj.toString()+ " | ");
+                    	 Wynik.add(obj.toString());
+                     }
+                     else  System.out.print(" ");
+                   }
+        
+                System.out.println();
+            }
+			System.out.println(Wynik);
 	
 	return Wynik;
  	}

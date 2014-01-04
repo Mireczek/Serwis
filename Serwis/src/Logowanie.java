@@ -111,7 +111,8 @@ public class Logowanie extends JPanel {
 					
 					//trzeba sprawdzac czy dane sie zgadzaja 
 					klient = new Klient(user,password);
-					System.out.println(user + password);		
+					System.out.println(user + password);
+					klient.Command("Select * from client where client_name = '" + user + "'");
 				}				
 			}
 	public void wyloguj(){

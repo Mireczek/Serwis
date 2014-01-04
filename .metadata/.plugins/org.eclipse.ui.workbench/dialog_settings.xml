@@ -12,6 +12,8 @@
 		<list key="textEntries">
 		</list>
 	</section>
+	<section name="ZipFileImportWizard">
+	</section>
 	<section name="FileSystemExportWizard">
 	</section>
 	<section name="ImportExportAction">

@@ -16,19 +16,7 @@ public class Serwis {
             }
         });
 
-
-//Czytaj wiêcej na: http://javastart.pl/grafika_awt_swing/pola-tekstowe/2/#ixzz2lwN6TjKU
-
-		
 	
-		/*
-		*/
-		
-		
-		
-		
 	}
-
-	
 	
 }

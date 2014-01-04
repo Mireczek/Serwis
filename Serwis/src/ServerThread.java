@@ -2,7 +2,10 @@ import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
+import java.util.List;
 
 
 public class ServerThread extends Thread {
@@ -11,9 +14,11 @@ public class ServerThread extends Thread {
 	private int ID = -1;
 	private DataInputStream datain = null;
 	private DataOutputStream dataout = null;
+	private ObjectOutputStream objectOut = null;
 	private String name = null;
 	private String password;
 	private Boolean blad = false ;
+	
 	
 	public ServerThread(SerwerSerwis serwerSerwis, Socket socket) {
 		server = serwerSerwis;
@@ -21,6 +26,8 @@ public class ServerThread extends Thread {
 		ID = socket.getPort(); //pobierz id klienta
 	}
 	public void run(){
+		String command;
+		List<String> msg;
 		System.out.println("Proba polaczenia : "+ ID);
 		try {
 			name =  datain.readUTF();
@@ -30,7 +37,7 @@ public class ServerThread extends Thread {
 			e1.printStackTrace();
 		}
 		MySQL mysql = new MySQL(name);
-		if(password.equals(mysql.command("")) {
+		if(password.equals(mysql.getPassword())){
 			System.out.println("Zalogowano");
 			blad = true;
 			try {
@@ -40,18 +47,23 @@ public class ServerThread extends Thread {
 					e.printStackTrace();
 			}  
 			
-			
 		while(true){
 			try{
-				System.out.println(datain.readUTF());
-			
-			}catch(IOException e){	}
+				command = datain.readUTF();
+				System.out.println(command);
+				msg=mysql.Command(command);
+				objectOut.writeObject(msg);
+				System.out.println(msg);
+				
+			}catch(IOException e){	} 
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			
 		}
-		
-		
-		
+			
 		}else{
 			System.out.println("b³êdny login lub has³o");
 			blad = false;
@@ -71,6 +83,7 @@ public class ServerThread extends Thread {
 	public void open() throws IOException{
 		datain = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 		dataout = new DataOutputStream(socket.getOutputStream());
+		objectOut = new ObjectOutputStream(socket.getOutputStream());
 	}
 	public void close() throws IOException{
 		if (socket != null)    socket.close();

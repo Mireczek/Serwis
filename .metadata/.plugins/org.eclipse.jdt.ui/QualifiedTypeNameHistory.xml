@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="java.awt.peer.MenuPeer"/>
 <fullyQualifiedTypeName name="Menu"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
-<fullyQualifiedTypeName name="java.awt.Dimension"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
-<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="java.net.ServerSocket"/>
-<fullyQualifiedTypeName name="java.io.BufferedInputStream"/>
 <fullyQualifiedTypeName name="SerwerSerwis"/>
 <fullyQualifiedTypeName name="java.net.Socket"/>
 <fullyQualifiedTypeName name="java.io.DataInputStream"/>
@@ -18,8 +14,26 @@
 <fullyQualifiedTypeName name="java.io.DataOutputStream"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="Logowanie"/>
 <fullyQualifiedTypeName name="ServerThread"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="MySQL"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="BladFrame"/>
+<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+<fullyQualifiedTypeName name="Klient"/>
+<fullyQualifiedTypeName name="java.sql.ResultSetMetaData"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
+<fullyQualifiedTypeName name="java.io.BufferedInputStream"/>
+<fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
+<fullyQualifiedTypeName name="java.awt.Dimension"/>
+<fullyQualifiedTypeName name="Frame"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="Logowanie"/>
+<fullyQualifiedTypeName name="javax.swing.JTextArea"/>
 </qualifiedTypeNameHistroy>
