@@ -1,85 +1,79 @@
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.ScrollPane;
 import java.util.List;
+import java.util.Vector;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 
 
-public class Panel extends JPanel implements Runnable{
+public class Panel extends JPanel{
 	
 	private static int wysokosc = 400;
-	private static int szerokosc = 700;
-	private static List<String> lista ;
-	private boolean running = false;
-	private Thread th;
-	private static boolean flag = false;
-	private boolean flaga = false;
+	private static int szerokosc = 750;
+	private static  List<String> lista = new Vector<String>() ;
+	private static  JTable table;
+	static JPanel panelmenu = new JPanel();
+	private static JScrollPane scrollPane;
+	      
 	public Panel(){
-		
-	 
-	}
-	private void NaPanel(){
-		setPreferredSize(new Dimension(szerokosc,wysokosc));
-		JTextArea text = new JTextArea();
-		text.setPreferredSize(new Dimension(szerokosc, wysokosc));
-		add(text);
-		text.setText("nanananannaananan");
-		System.out.println("123");
-		int i = 0;
-		String number=null;
 
-		while(true){
-			flaga = flag;
-			if(flaga){
-				System.out.println("lipa");
+		setPreferredSize(new Dimension(szerokosc+10,wysokosc+30));
+		NaPanel();
+		panelmenu.setPreferredSize(new Dimension(szerokosc+10,wysokosc+20));
 		
-			text.setText("kuewqet");
-			System.out.println(Klient.Wynik);
-			number = Klient.Wynik.get(0);
-			System.out.println(number);
-			
+		add(panelmenu, BorderLayout.SOUTH);
+	}
+	private static void NaPanel(){
+		
+			String number=null;
+			int i = 0;
+			if(!lista.isEmpty())	{
+			number = lista.get(0);
+			lista.remove(0);
 			int columnNumber = Integer.parseInt(number);
-			for(int j = 0; j<(Klient.Wynik.size()-1)/columnNumber;j++){
-				for(i = 0; i< columnNumber;i++){
-					text.setText(Klient.Wynik.get(0));
-					Klient.Wynik.remove(0);
-					text.setText("nananan");
-				}
-				text.setText(text + "\n");
-				flag = false;
-				flaga=false;
-			}
-			}else text.setText("Wybierz coœ");
 			
-		}
+			String[] ColumnNames = new String[columnNumber];
+			
+			for(int j = 0; j<columnNumber;j++){
+				ColumnNames[j] = lista.get(0);
+				lista.remove(0);
+			}
+			String[][]Table = new String[lista.size()/columnNumber][columnNumber] ;
+			int listLength = lista.size()/columnNumber;
+			for(int j = 0; j<listLength;j++){
+				for(i = 0; i< columnNumber;i++){
+					Table[j][i] = lista.get(0);			
+					lista.remove(0);
+				}				
+			}
+			
+			
+			table = new JTable(Table, ColumnNames);
+			scrollPane = new JScrollPane(table);
+			scrollPane.setPreferredSize(new Dimension(szerokosc+10,wysokosc));
+			scrollPane.createVerticalScrollBar();
+			table.setPreferredSize(new Dimension(szerokosc,16*listLength));
+			panelmenu.removeAll();
+			
+			panelmenu.add(scrollPane, BorderLayout.SOUTH);
+			panelmenu.repaint();
+			panelmenu.revalidate();
+			}
 		
 	}
-	public static void Wyswietl(List<String> Lista){
+	public static  void Wyswietl(List<String> Lista){
 		lista  = Lista ;
 		System.out.println(lista);
-		flag = true;
-		if(flag);
-		System.out.println("1234");
+		NaPanel();
+
 	}
-	public void start() {
-		   if(!running) {
-				   th = new Thread(this);
-				   th.start();
-				   running = true;
-		   }
-	}
-	 public void stop() {
-		   running = false;
-		   th.interrupt();
-		    
- }
-	@Override
-	public void run() {
-		
-		System.out.println("244123543");
-		if(running) {
-			NaPanel();		
-		}
-	}
+
 }

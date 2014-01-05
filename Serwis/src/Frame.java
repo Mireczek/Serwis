@@ -5,12 +5,12 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 
 public class Frame extends JFrame {
 	private int szerokosc = 800;
 	private  int wysokosc = 600;
-	
 		public Frame(){
 			super();
 			setPreferredSize(new Dimension(szerokosc,wysokosc));
@@ -20,14 +20,13 @@ public class Frame extends JFrame {
 			JMenuBar menu = new Menu();
 			JPanel loginPanel = new Logowanie();
 			JPanel ActionB = new ActionButton();
-			Panel glownyPanel = new Panel();
-			glownyPanel.start();
-			add(menu, BorderLayout.NORTH);
+			JPanel container = new Panel();
 			
-		//	setLayout(new FlowLayout(FlowLayout.LEADING));
+			add(menu, BorderLayout.NORTH);
+			add(container, BorderLayout.SOUTH);
 			add(loginPanel, BorderLayout.EAST);
 			add(ActionB, BorderLayout.WEST);
-			add(glownyPanel, BorderLayout.SOUTH);
+			
 			pack();
 			
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -10,7 +10,7 @@ import javax.swing.JMenuItem;
 
 public class Menu extends JMenuBar{
 		
-	
+
 	public Menu(){
 			userMenu();	
 		}
@@ -43,11 +43,12 @@ public class Menu extends JMenuBar{
 		menuFile.add(ustawienia);
 		menuAbout.add(oProgramie);
 		
+		
 		Samochody.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Klient.Command("Select * from model");
+				Klient.Command("Select * from model where client_id = '" +  Klient.ID +"'");
 				
 			}
 		});
@@ -56,7 +57,7 @@ public class Menu extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//
+				Klient.Command("Select * from model where client_id = '" +  Klient.ID +"'");
 				
 			}
 		});
@@ -81,8 +82,7 @@ public class Menu extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//wyswietla historie napraw wszystkich samochodow
-				Klient.Command("jajka");
+				Klient.Command("Select * from model where client_id = '" +  Klient.ID +"'");
 				
 			}
 		});
@@ -91,6 +91,7 @@ public class Menu extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//wyswietla aktualnie przeprowadzane naprawy
+				Klient.Command("Select * from model where client_id = '" +  Klient.ID +"'");
 				
 			}
 		});

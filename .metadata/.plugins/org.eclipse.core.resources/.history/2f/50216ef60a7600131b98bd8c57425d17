@@ -1,0 +1,15 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+
+public class Kontener extends JPanel {
+	private static int wysokosc = 300;
+	private static int szerokosc = 700;
+	public Kontener(){
+		setPreferredSize(new Dimension(wysokosc,szerokosc));
+		JPanel panel = new Panel();
+		add(panel, BorderLayout.SOUTH);
+	}
+}

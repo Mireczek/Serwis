@@ -43,6 +43,8 @@ public class ServerThread extends Thread {
 			try {
 				dataout.writeBoolean(blad);
 				dataout.flush();
+				dataout.writeInt(ID);
+				dataout.flush();
 			} catch (IOException e) {
 					e.printStackTrace();
 			}  

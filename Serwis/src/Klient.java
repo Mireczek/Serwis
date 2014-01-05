@@ -3,7 +3,6 @@ import java.net.*;
 import java.util.List;
 import java.io.*;
 
-import javax.swing.JFrame;
 
 public class Klient {
 	private Socket socket = null;
@@ -14,41 +13,51 @@ public class Klient {
 	private int port = 5000;
 	private boolean polaczenie = false;
 	public static List<String> Wynik = null; 
+	public static int ID = 0;
+	
 	@SuppressWarnings("deprecation")
 	public Klient(String name, String password){
-		try{
-			socket = new Socket(serverName, port);
-			start();
-		}catch(UnknownHostException uhe)
-	      {  System.out.println("Host unknown: " + uhe.getMessage());
-	      }
-	      catch(IOException ioe)
-	      {  System.out.println("Unexpected exception: " + ioe.getMessage());
-	      }
 		
-        try {
-			streamOut.writeUTF(name); 
-			streamOut.flush();
-			streamOut.writeUTF(password);
-			streamOut.flush();
-			polaczenie = streamIn.readBoolean();
+		if((!Logowanie.zalogowany) && (name.length()>1))
+			{
+			try{
 			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        System.out.println("d");
-        
-		if(polaczenie){
-			Logowanie.zalogowany = true;
+				socket = new Socket(serverName, port);
+				start();
+			}catch(UnknownHostException uhe)
+		      {  System.out.println("Host unknown: " + uhe.getMessage());
+		      }
+		      catch(IOException ioe)
+		      {  System.out.println("Unexpected exception: " + ioe.getMessage());
+		      }
 			
-       
-		}else{
-			JFrame frame = new BladFrame();
-			Logowanie.zalogowany = false;
-			stop();
+	        try {
+				streamOut.writeUTF(name); 
+				streamOut.flush();
+				streamOut.writeUTF(password);
+				streamOut.flush();
+				polaczenie = streamIn.readBoolean();
+				ID = streamIn.readInt();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	        System.out.println("d");
+	        
+			if(polaczenie){
+				Logowanie.zalogowany = true;
+				
+	       
+			}else{
+				
+				Logowanie.zalogowany = false;
+				stop();
+			}
 		}
+			
 		
 	}
+
 	public void start() throws IOException{
 		streamIn = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 		streamOut = new DataOutputStream(socket.getOutputStream());
@@ -81,8 +90,7 @@ public class Klient {
 			
 			e.printStackTrace();
 		}
-		Panel.Wyswietl(Wynik);
-		
+		Panel.Wyswietl(Wynik);		
 	}
 
 }

@@ -23,7 +23,8 @@ public class Logowanie extends JPanel {
 	private static JButton wylogujButton;
 	public static boolean zalogowany = false;
 	private String user;
-	private Klient klient;
+	private JFrame Bframe;
+	public static Klient klient;
 	private boolean log=false, wylog=false;
 	public Logowanie(){
 		
@@ -65,7 +66,7 @@ public class Logowanie extends JPanel {
 		JLabel name = new JLabel("Name: ");
 	    JLabel password = new JLabel("Password: ");
 	    
-	    setPreferredSize(new Dimension(200,60));
+	    setPreferredSize(new Dimension(450,30));
 		setLayout(new FlowLayout());
 		
 		if(log == false){
@@ -109,10 +110,13 @@ public class Logowanie extends JPanel {
 	public void zaloguj(String user, String password){
 				if(zalogowany== false){
 					
-					//trzeba sprawdzac czy dane sie zgadzaja 
+					
 					klient = new Klient(user,password);
 					System.out.println(user + password);
-					klient.Command("Select * from client where client_name = '" + user + "'");
+					if(zalogowany)
+						klient.Command("Select * from client where client_name = '" + user + "'");
+					else	
+						Bframe = new BladFrame();
 				}				
 			}
 	public void wyloguj(){

@@ -42,7 +42,7 @@ public String getPassword(){//Pobranie has³a dla klienta OK
 	ResultSet rs;
 	String password = null;
 	try {
-		rs = stmt.executeQuery("Select * from client_password where client_id = '"+ID+"'");
+		rs = stmt.executeQuery("Select * from client_password where client_id = '"+ID + "'");
 		while(rs.next())
 			password = rs.getString("password");
 		
