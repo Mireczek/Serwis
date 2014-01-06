@@ -56,11 +56,17 @@ public class Panel extends JPanel{
 			}
 			
 			
-			table = new JTable(Table, ColumnNames);
+			table = new JTable(Table, ColumnNames){
+				//blokada edycji
+				public boolean isCellEditable(int row, int column) {
+			        return false;
+			    }
+			};
 			scrollPane = new JScrollPane(table);
 			scrollPane.setPreferredSize(new Dimension(szerokosc+10,wysokosc));
 			scrollPane.createVerticalScrollBar();
 			table.setPreferredSize(new Dimension(szerokosc,16*listLength));
+			
 			panelmenu.removeAll();
 			
 			panelmenu.add(scrollPane, BorderLayout.SOUTH);
@@ -69,6 +75,9 @@ public class Panel extends JPanel{
 			}
 		
 	}
+	public boolean isCellEditable(int row, int column) {
+        return false;
+    }
 	public static  void Wyswietl(List<String> Lista){
 		lista  = Lista ;
 		System.out.println(lista);

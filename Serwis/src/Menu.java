@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 
 public class Menu extends JMenuBar{
@@ -54,7 +54,7 @@ public class Menu extends JMenuBar{
 				if(Klient.ID !=0){
 				Klient.Command("Select * from car where client_id = '" +  Klient.ID +"'");
 				}else{
-					JFrame f = new ZalogujFrame();
+					JFrame f = new InfoBox("Zaloguj siê aby korzystaæ z funkcji programu");
 				}
 				
 			}
@@ -68,7 +68,7 @@ public class Menu extends JMenuBar{
 				if(Klient.ID !=0){
 					Klient.Command("Select * from serviceHistory where client_id = '" +  Klient.ID +"'");
 					}else{
-						JFrame f = new ZalogujFrame();
+						JFrame f = new InfoBox("Zaloguj siê aby korzystaæ z funkcji programu");
 					}
 				
 			}
@@ -82,7 +82,7 @@ public class Menu extends JMenuBar{
 				if(Klient.ID !=0){
 					JFrame form = new Formularz();
 					}else{
-						JFrame f = new ZalogujFrame();
+						JFrame f = new InfoBox("Zaloguj siê aby korzystaæ z funkcji programu");
 					}
 			}
 		});
@@ -103,7 +103,7 @@ public class Menu extends JMenuBar{
 				if(Klient.ID !=0){
 					Klient.Command("Select * from serviceHistory where client_id = '" +  Klient.ID +"'");
 					}else{
-						JFrame f = new ZalogujFrame();
+						JFrame f = new InfoBox("Zaloguj siê aby korzystaæ z funkcji programu");
 					}
 				
 			}
@@ -117,7 +117,7 @@ public class Menu extends JMenuBar{
 				if(Klient.ID !=0){
 					Klient.Command("Select * from serviceHistory where client_id = '" +  Klient.ID +"'");
 					}else{
-						JFrame f = new ZalogujFrame();
+						JFrame f = new InfoBox("Zaloguj siê aby korzystaæ z funkcji programu");
 					}
 				
 			}
@@ -129,7 +129,7 @@ public class Menu extends JMenuBar{
 				
 					//wyswietla informacje o programie
 					JFrame about = new JFrame();
-					JTextField tf= new JTextField();
+					JTextArea tf= new JTextArea();
 					tf.setText("Program Bosski sie zrobi³");
 					about.setPreferredSize(new Dimension(100,100));
 					about.setLocation(Frame.sWidth/2-50,Frame.sHeight/2-50);
@@ -146,22 +146,18 @@ public class Menu extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(Klient.ID !=0){
+				
 					//wyswietla okno do edycji ustawien 
 					JFrame about = new JFrame();
-					JTextField tf= new JTextField();
-					tf.setText("Tutaj powstan¹ ustawienia ");
+					JTextArea tf= new JTextArea();
+					tf.setText("Tutaj powstan¹ ustawienia");
 					about.setPreferredSize(new Dimension(100,100));
 					about.setLocation(Frame.sWidth/2-50,Frame.sHeight/2-50);
 					about.add(tf);
 					about.pack();
 					
 					about.setVisible(true);
-					
-					}else{
-						JFrame f = new ZalogujFrame();
-					}
-				
+		
 				
 			}
 		});	

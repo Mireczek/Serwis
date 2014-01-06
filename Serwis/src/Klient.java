@@ -11,7 +11,7 @@ public class Klient {
 	private static ObjectInputStream objectIn = null;
 	private String serverName = "localhost";
 	private int port = 5000;
-	private boolean polaczenie = false;
+	public boolean polaczenie = false;
 	public static List<String> Wynik = null; 
 	public static int ID = 0;
 	
@@ -26,11 +26,13 @@ public class Klient {
 				start();
 			}catch(UnknownHostException uhe)
 		      {  System.out.println("Host unknown: " + uhe.getMessage());
+
 		      }
 		      catch(IOException ioe)
 		      {  System.out.println("Unexpected exception: " + ioe.getMessage());
+		      	InfoBox i = new InfoBox("Nie mo¿na nawi¹zaæ po³¹czenia z serwerem");
 		      }
-			
+			if(streamIn!=null){
 	        try {
 				streamOut.writeUTF(name); 
 				streamOut.flush();
@@ -42,7 +44,6 @@ public class Klient {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-	        System.out.println("d");
 	        
 			if(polaczenie){
 				Logowanie.zalogowany = true;
@@ -55,6 +56,7 @@ public class Klient {
 			}
 		}
 			
+		}
 		
 	}
 

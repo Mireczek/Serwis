@@ -115,7 +115,7 @@ public class Logowanie extends JPanel {
 					System.out.println(user + password);
 					if(zalogowany)
 						klient.Command("Select * from client where client_name = '" + user + "'");
-					else	
+					else if(klient.polaczenie)	
 						Bframe = new BladFrame();
 				}				
 			}
