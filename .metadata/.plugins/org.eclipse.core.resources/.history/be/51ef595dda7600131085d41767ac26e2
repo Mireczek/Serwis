@@ -1,0 +1,17 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+
+public class ZalogujFrame extends JFrame {
+	public ZalogujFrame(){
+		setPreferredSize(new Dimension(200,200));
+		JTextField tf = new JTextField();
+		tf.setText("Aby korzystaæ z programu zaloguj siê.");
+		add(tf, BorderLayout.CENTER);
+		setVisible(true);
+		pack();
+	}
+}

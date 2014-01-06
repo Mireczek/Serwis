@@ -68,6 +68,7 @@ public class Klient {
 			if(streamIn != null) streamIn.close();
 			if(streamOut != null) streamOut.close();
 			if(socket != null) socket.close();
+			ID = 0;
 		}catch(IOException e){
 			
 		}

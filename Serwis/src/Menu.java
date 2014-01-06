@@ -1,11 +1,14 @@
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.peer.MenuPeer;
 
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JTextField;
 
 
 public class Menu extends JMenuBar{
@@ -48,7 +51,11 @@ public class Menu extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Klient.Command("Select * from model where client_id = '" +  Klient.ID +"'");
+				if(Klient.ID !=0){
+				Klient.Command("Select * from car where client_id = '" +  Klient.ID +"'");
+				}else{
+					JFrame f = new ZalogujFrame();
+				}
 				
 			}
 		});
@@ -57,7 +64,12 @@ public class Menu extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Klient.Command("Select * from model where client_id = '" +  Klient.ID +"'");
+				
+				if(Klient.ID !=0){
+					Klient.Command("Select * from serviceHistory where client_id = '" +  Klient.ID +"'");
+					}else{
+						JFrame f = new ZalogujFrame();
+					}
 				
 			}
 		});
@@ -67,6 +79,11 @@ public class Menu extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				//wyswietla formularz do umawiania sie na uslugi
 				
+				if(Klient.ID !=0){
+					JFrame form = new Formularz();
+					}else{
+						JFrame f = new ZalogujFrame();
+					}
 			}
 		});
 		
@@ -82,7 +99,12 @@ public class Menu extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Klient.Command("Select * from model where client_id = '" +  Klient.ID +"'");
+				
+				if(Klient.ID !=0){
+					Klient.Command("Select * from serviceHistory where client_id = '" +  Klient.ID +"'");
+					}else{
+						JFrame f = new ZalogujFrame();
+					}
 				
 			}
 		});
@@ -91,7 +113,12 @@ public class Menu extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//wyswietla aktualnie przeprowadzane naprawy
-				Klient.Command("Select * from model where client_id = '" +  Klient.ID +"'");
+				
+				if(Klient.ID !=0){
+					Klient.Command("Select * from serviceHistory where client_id = '" +  Klient.ID +"'");
+					}else{
+						JFrame f = new ZalogujFrame();
+					}
 				
 			}
 		});
@@ -99,7 +126,19 @@ public class Menu extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//wyswietla informacje o programie
+				
+					//wyswietla informacje o programie
+					JFrame about = new JFrame();
+					JTextField tf= new JTextField();
+					tf.setText("Program Bosski sie zrobi³");
+					about.setPreferredSize(new Dimension(100,100));
+					about.setLocation(Frame.sWidth/2-50,Frame.sHeight/2-50);
+					about.add(tf);
+					about.pack();
+					
+					about.setVisible(true);
+					
+
 				
 			}
 		});
@@ -107,7 +146,22 @@ public class Menu extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//wyswietla okno do edycji ustawien 
+				if(Klient.ID !=0){
+					//wyswietla okno do edycji ustawien 
+					JFrame about = new JFrame();
+					JTextField tf= new JTextField();
+					tf.setText("Tutaj powstan¹ ustawienia ");
+					about.setPreferredSize(new Dimension(100,100));
+					about.setLocation(Frame.sWidth/2-50,Frame.sHeight/2-50);
+					about.add(tf);
+					about.pack();
+					
+					about.setVisible(true);
+					
+					}else{
+						JFrame f = new ZalogujFrame();
+					}
+				
 				
 			}
 		});	
