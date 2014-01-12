@@ -10,7 +10,7 @@ public class Klient {
 	private static DataOutputStream streamOut = null;
 	private static ObjectInputStream objectIn = null;
 	private String serverName = "localhost";
-	public static int port = 5000;
+	private int port = 5000;
 	public boolean polaczenie = false;
 	public static List<String> Wynik = null; 
 	public static int ID = 0;

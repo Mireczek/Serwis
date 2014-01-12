@@ -84,14 +84,5 @@ public class Panel extends JPanel{
 		NaPanel();
 
 	}
-	public static int pobierzID(){
-		String  tmp = "";
-		int id = table.getSelectedRow();
-		if(id != -1){
-			tmp = (String) table.getValueAt(id, 1);
-			id = Integer.parseInt(tmp);
-		}
-		return id;
-	}
 
 }

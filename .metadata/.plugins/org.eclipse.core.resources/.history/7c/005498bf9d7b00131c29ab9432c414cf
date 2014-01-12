@@ -38,14 +38,10 @@ public class Menu extends JMenuBar{
 		JMenuItem aktualneNaprawy = new JMenuItem("Aktualne naprawy");
 		JMenuItem oProgramie = new JMenuItem("O Programie");
 		JMenuItem Samochody = new JMenuItem("Moje samochody");
-		JMenuItem Usun = new JMenuItem("Usuñ");
-		JMenuItem Dodaj = new JMenuItem("Dodaj nowy");
 		JMenuItem Umow = new JMenuItem("Umów siê");
 		menuNaprawy.add(historiaNapraw);
 		menuNaprawy.add(aktualneNaprawy);
 		menuSamochody.add(Samochody);
-		menuSamochody.add(Usun);
-		menuSamochody.add(Dodaj);
 		menuUmow.add(Umow);
 		menuFile.add(ustawienia);
 		menuAbout.add(oProgramie);
@@ -134,7 +130,7 @@ public class Menu extends JMenuBar{
 					//wyswietla informacje o programie
 					JFrame about = new JFrame();
 					JTextArea tf= new JTextArea();
-					tf.setText("Projekt z Technologii Obiektowych PK");
+					tf.setText("Program Bosski sie zrobi³");
 					about.setPreferredSize(new Dimension(100,100));
 					about.setLocation(Frame.sWidth/2-50,Frame.sHeight/2-50);
 					about.add(tf);
@@ -154,53 +150,10 @@ public class Menu extends JMenuBar{
 					//wyswietla okno do edycji ustawien 
 					JFrame about = new JFrame();
 					JTextArea tf= new JTextArea();
-					tf.setText("Podaj Port : ");
-					JTextArea tf2 = new JTextArea();
-					Klient.port = Integer.parseInt(tf2.getText());
+					tf.setText("Tutaj powstan¹ ustawienia");
 					about.setPreferredSize(new Dimension(100,100));
 					about.setLocation(Frame.sWidth/2-50,Frame.sHeight/2-50);
 					about.add(tf);
-					about.add(tf2);
-					about.pack();
-					
-					about.setVisible(true);
-		
-				
-			}
-		});	
-		Usun.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				if(Klient.ID !=0){
-					int id = Panel.pobierzID();
-					if(id != -1){
-						Klient.Command("Delete from car where car_id = '" +  id +"'");
-					}else{
-						JFrame jf = new InfoBox("Wybierz, który samochód chcesz usun¹æ");
-					}
-					}else{
-						JFrame f = new InfoBox("Zaloguj siê aby korzystaæ z funkcji programu");
-					}
-				
-			}
-		});	
-		Dodaj.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-					//wyswietla okno do edycji ustawien 
-					JFrame about = new JFrame();
-					JTextArea tf= new JTextArea();
-					tf.setText("Podaj Port : ");
-					JTextArea tf2 = new JTextArea();
-					Klient.port = Integer.parseInt(tf2.getText());
-					about.setPreferredSize(new Dimension(100,100));
-					about.setLocation(Frame.sWidth/2-50,Frame.sHeight/2-50);
-					about.add(tf);
-					about.add(tf2);
 					about.pack();
 					
 					about.setVisible(true);

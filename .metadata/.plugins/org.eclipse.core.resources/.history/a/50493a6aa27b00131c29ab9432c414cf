@@ -44,8 +44,6 @@ public class Menu extends JMenuBar{
 		menuNaprawy.add(historiaNapraw);
 		menuNaprawy.add(aktualneNaprawy);
 		menuSamochody.add(Samochody);
-		menuSamochody.add(Usun);
-		menuSamochody.add(Dodaj);
 		menuUmow.add(Umow);
 		menuFile.add(ustawienia);
 		menuAbout.add(oProgramie);
