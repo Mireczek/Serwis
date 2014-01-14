@@ -75,7 +75,7 @@ public class Klient {
 			
 		}
 	}
-	public static void Command(String command){
+	public static List<String> Command(String command){
 		
 		try {
 			streamOut.writeUTF(command);
@@ -93,7 +93,7 @@ public class Klient {
 			
 			e.printStackTrace();
 		}
-		Panel.Wyswietl(Wynik);		
+		return Wynik	;
 	}
 
 }

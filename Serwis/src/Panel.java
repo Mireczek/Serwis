@@ -93,5 +93,10 @@ public class Panel extends JPanel{
 		}
 		return id;
 	}
-
+	 public static void Wyslij(String Command){
+		 List<String> Wynik = Klient.Command(Command);
+		 Wyswietl(Wynik);	
+		 
+	 }
 }
+

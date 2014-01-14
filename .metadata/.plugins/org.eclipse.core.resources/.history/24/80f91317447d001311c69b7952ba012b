@@ -1,0 +1,49 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+import javax.swing.JTextField;
+
+
+public class Formularz extends JFrame{
+	public Formularz(){
+		//Formularz do umawiania siê na us³ugi
+		setPreferredSize(new Dimension(300,500));
+		setLocation(Frame.sWidth/2,Frame.sHeight/2);
+		setVisible(true);
+		JLabel jl = new JLabel("Numer Samochodu : ");
+		JLabel jl2 = new JLabel("Data : ");
+		JLabel jl3 = new JLabel("Opis us³ugi : ");
+		JTextField tx1 = new JTextField();
+		tx1.setPreferredSize(new Dimension(150,20));
+		JTextField tx2 = new JTextField();
+		tx2.setPreferredSize(new Dimension(150,20));
+		JTextArea tx3 = new JTextArea();
+		tx3.setPreferredSize(new Dimension(150,150));
+		JPanel jp = new JPanel();
+		jp.setPreferredSize(new Dimension(280, 300));
+		jp.setLayout(new BoxLayout(jp,BoxLayout.PAGE_AXIS));
+		jp.add(jl);
+		jp.add(tx1);
+		jp.add(jl2);
+		jp.add(tx2);
+		jp.add(jl3);
+		jp.add(tx3);
+		add(jp, BorderLayout.NORTH);
+		JButton jb = new JButton("Wyslij");
+		add(jb, BorderLayout.SOUTH);
+		pack();
+		setVisible(true);
+	
+	}
+	
+}

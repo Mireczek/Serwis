@@ -85,8 +85,7 @@ public class Logowanie extends JPanel {
 		add(password);
 		add(passwordtf);
 		add(zalogujButton);
-		revalidate();
-		repaint();
+
 		
 	}
 	private void dodajKomponentyzalogowany(){
@@ -114,8 +113,8 @@ public class Logowanie extends JPanel {
 					klient = new Klient(user,password);
 					System.out.println(user + password);
 					if(zalogowany)
-						klient.Command("Select * from client where client_name = '" + user + "'");
-					else if(klient.polaczenie)	
+						System.out.println("zalogowano");
+					else if(!klient.polaczenie)	
 						Bframe = new BladFrame();
 				}				
 			}

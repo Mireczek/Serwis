@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.peer.MenuPeer;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -56,7 +57,7 @@ public class Menu extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(Klient.ID !=0){
-				Klient.Command("Select * from car where client_id = '" +  Klient.ID +"'");
+				Panel.Wyslij("Select * from car where client_id = '" +  Klient.ID +"'");
 				}else{
 					JFrame f = new InfoBox("Zaloguj siê aby korzystaæ z funkcji programu");
 				}
@@ -83,11 +84,11 @@ public class Menu extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				//wyswietla formularz do umawiania sie na uslugi
 				
-				if(Klient.ID !=0){
+				//if(Klient.ID !=0){
 					JFrame form = new Formularz();
-					}else{
-						JFrame f = new InfoBox("Zaloguj siê aby korzystaæ z funkcji programu");
-					}
+					//}else{
+						//JFrame f = new InfoBox("Zaloguj siê aby korzystaæ z funkcji programu");
+					//}
 			}
 		});
 		
@@ -190,20 +191,9 @@ public class Menu extends JMenuBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-					//wyswietla okno do edycji ustawien 
-					JFrame about = new JFrame();
-					JTextArea tf= new JTextArea();
-					tf.setText("Podaj Port : ");
-					JTextArea tf2 = new JTextArea();
-					Klient.port = Integer.parseInt(tf2.getText());
-					about.setPreferredSize(new Dimension(100,100));
-					about.setLocation(Frame.sWidth/2-50,Frame.sHeight/2-50);
-					about.add(tf);
-					about.add(tf2);
-					about.pack();
+				JFrame dodaj = new Dodaj();
 					
-					about.setVisible(true);
+					
 		
 				
 			}
